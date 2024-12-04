@@ -14,6 +14,7 @@ export const MainPage = () =>{
     const scanUser = async ()=>{
       const obj = { tgId: decodedText }
     const result = await fetchScan(obj)
+    console.log(result)
     }
     
 
