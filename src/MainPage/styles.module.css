@@ -1,0 +1,57 @@
+.main{
+  width: 100%;
+display: flex;
+justify-content: center;
+padding-top: 200px;
+
+}
+.qrScannerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.startButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0053f3;
+  color: #eff4f8;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.startButton:disabled {
+  background-color: #0053f3;
+  cursor: not-allowed;
+}
+
+.qrReader {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 10px;
+ border: 1px solid #0053f3;
+  margin-top: 20px;
+}
+
+.successMessage {
+  font-size: 20px;
+  color: #0053f3;
+}
+
+.resultText {
+  font-weight: 600;
+  font-size: 18px;
+  color: #878787;
+}
