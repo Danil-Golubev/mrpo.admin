@@ -11,8 +11,8 @@ export const MainPage = () =>{
     const qrCodeRegionId = "qr-reader"; // ID для div элемента
   
 
-    const scanUser = async ()=>{
-      const obj = { tgId: decodedText }
+    const scanUser = async (text:string)=>{
+      const obj = { tgId: text }
     const result = await fetchScan(obj)
     console.log(result)
     }
@@ -45,7 +45,7 @@ export const MainPage = () =>{
           setDecodedText(decodedText);
           setIsScanned(true); // Отображаем сообщение об успешном сканировании
           triggerVibration(); // Запускаем вибрацию
-  scanUser()
+  scanUser(decodedText)
           stopScanner(); // Останавливаем сканер
         },
         (errorMessage) => {
@@ -96,6 +96,7 @@ export const MainPage = () =>{
         >
           {isScanned ? 'Сканировать снова' : 'Открыть камеру'}
         </button>
+        {/* <button className={styles.startButton} onClick={()=>scanUser(decodedText )} >Тест</button> */}
   
         {/* Область для отображения камеры */}
         {!isScanned && <div id={qrCodeRegionId} className={styles.qrReader}></div>}
