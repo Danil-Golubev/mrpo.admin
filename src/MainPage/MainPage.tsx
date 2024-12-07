@@ -4,6 +4,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 import { fetchScan } from '../api';
 
 export const MainPage = () =>{
+    const [response, setResponse] = useState<string | null>(null)
     const [decodedText, setDecodedText] = useState<string | null>(null);
     const [isScanning, setIsScanning] = useState(false); // Флаг для отслеживания состояния сканирования
     const [isScanned, setIsScanned] = useState(false);
@@ -14,7 +15,7 @@ export const MainPage = () =>{
     const scanUser = async (text:string)=>{
       const obj = { tgId: text }
     const result = await fetchScan(obj)
-    console.log(result)
+    setResponse(result)
     }
     
 
@@ -104,7 +105,7 @@ export const MainPage = () =>{
         {/* Сообщение об успешном сканировании */}
         {isScanned && (
           <div className={styles.resultContainer}>
-            {decodedText}
+            {response}
           </div>
         )}
       </div>
