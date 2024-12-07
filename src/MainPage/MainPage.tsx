@@ -105,7 +105,7 @@ export const MainPage = () =>{
         {/* Сообщение об успешном сканировании */}
         {isScanned && (
           <div className={styles.resultContainer}>
-            {response}
+            {JSON.stringify(response)}
           </div>
         )}
       </div>
