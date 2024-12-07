@@ -4,8 +4,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 import { fetchScan } from '../api';
 
 export const MainPage = () =>{
-    const [response, setResponse] = useState<string | null>(null)
-    // const [decodedText, setDecodedText] = useState<string | null>(null);
+    const [decodedText, setDecodedText] = useState<string | null>(null);
     const [isScanning, setIsScanning] = useState(false); // Флаг для отслеживания состояния сканирования
     const [isScanned, setIsScanned] = useState(false);
     const qrCodeScannerRef = useRef<Html5Qrcode | null>(null);
@@ -15,7 +14,6 @@ export const MainPage = () =>{
     const scanUser = async (text:string)=>{
       const obj = { tgId: text }
     const result = await fetchScan(obj)
-    setResponse(result)
     }
     
 
@@ -43,7 +41,7 @@ export const MainPage = () =>{
         { facingMode: "environment" }, // Используем основную камеру
         config,
         (decodedText) => {
-          // setDecodedText(decodedText);
+          setDecodedText(decodedText);
           setIsScanned(true); // Отображаем сообщение об успешном сканировании
           triggerVibration(); // Запускаем вибрацию
   scanUser(decodedText)
@@ -81,7 +79,7 @@ export const MainPage = () =>{
   
     // Функция для повторного запуска сканера после успешного сканирования
     const handleRestart = () => {
-      // setDecodedText(null); // Сбрасываем информацию
+      setDecodedText(null); // Сбрасываем информацию
       setIsScanned(false);  // Скрываем сообщение
       startCamera();        // Перезапускаем сканирование
     };
@@ -105,7 +103,7 @@ export const MainPage = () =>{
         {/* Сообщение об успешном сканировании */}
         {isScanned && (
           <div className={styles.resultContainer}>
-            {JSON.stringify(response)}
+            {decodedText}
           </div>
         )}
       </div>
